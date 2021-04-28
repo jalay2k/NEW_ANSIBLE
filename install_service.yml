@@ -1,0 +1,18 @@
+---
+-   name: install Service for the company
+    hosts: localhost
+    become: true
+    tasks:
+     - name: update repostory index
+       apt:
+        update_cache: yes
+     - name: install WEBSERVER APACHE2
+       apt:
+        name: apache2
+        state: latest
+     - name: add PHP support for apache2
+       apt:
+        name: libapache2-mod-php
+        state: latest
+      
+      
