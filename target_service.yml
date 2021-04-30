@@ -1,0 +1,53 @@
+---
+-   hosts: all
+    gather_facts: yes
+    become: true
+    pre_tasks:
+    - name: install update for Ubuntu
+      tags: always
+      package:
+       upgrade: dist
+       update_cache: yes
+      when: ansible_os_family == "Ubuntu"
+    - name: install update for Centos
+      tags: always
+      package:
+       update_only: yes
+       update_cache: yes
+      when: ansible_os_family == "RedHat"
+
+-   hosts: webserver
+    become: true 
+    tasks: 
+    - name: install for Ubuntu
+      tags: apache2, apache, ubuntu
+      apt: 
+        name:
+          - apache2
+          - libapache2-mod-php
+        state: latest
+      when: ansible_os_family == "Ubuntu"
+    - name: install for Centos
+      tags: httpd, centos, apache2
+      yum:
+        name: 
+          - httpd
+          - php
+        state: latest
+      when: ansible_os_family == "RedHat"
+ 
+-   hosts: DEBIAN.ariknetworks.com:centos01.ariknetworks.com
+    become: true
+    tasks:
+    - name: install MARIADB FOR (UBUNTU)
+      tags: dataserver, ubuntu
+      package:
+        name: mariadb-server
+        state: present
+      when: ansible_os_family == "Ubuntu"
+    - name: install MARIADB For (CENTOS)
+      tags: dataserver, centos 
+      package:
+        name: mariadb
+        state: latest
+      when: ansible_os_family == "RedHat"
