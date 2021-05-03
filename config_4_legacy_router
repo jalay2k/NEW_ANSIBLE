@@ -1,0 +1,8 @@
+Host CORE2
+   KexAlgorithms +diffie-hellman-group1-sha1,diffie-hellman-group-exchange-sha256,diffie-hellman-group14-sha1
+Host BRANCH1
+   kexAlgorithms +diffie-hellman-group1-sha1,diffie-hellman-group-exchange-sha256,diffie-hellman-group14-sha1
+HOST SW1
+   KexAlgorithms +diffie-hellman-group1-sha1,diffie-hellman-group-exchange-sha256,diffie-hellman-group14-sha1
+HOST SW2
+   KexAlgorithms +diffie-hellman-group1-sha1,diffie-hellman-group-exchange-sha256,diffie-hellman-group14-sha1
